@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  position: absolute;
+  top: 1%;
+  left: 50%;
+  transform: translate(-50%);
+  color: rgba(0, 0, 0, 0.5);
+}
+p {
+  position: absolute;
+  bottom: 1%;
+  right: 1%;
+  transform: translate(-10%);
+  color: rgba(0, 0, 0, 0.3);
+}
