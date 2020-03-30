@@ -85,34 +85,14 @@ class Pen {
   }
 
   clear() {
-    let topLeft = {
-      x: -this.state.originMain.x,
-      y: this.ctx.canvas.height - this.state.originMain.y
-    };
-    let pos = this.getxy(topLeft.x, topLeft.y);
-    this.ctx.clearRect(
-      pos.x,
-      pos.y,
-      this.ctx.canvas.width,
-      this.ctx.canvas.height
-    );
+    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
   }
 
   trail(alpha = 0.5) {
     this.push();
     this.ctx.fillStyle = `rgba(255, 255, 0, ${alpha})`;
     console.log(this.ctx.fillStyle);
-    let topLeft = {
-      x: -this.state.originMain.x,
-      y: this.ctx.canvas.height - this.state.originMain.y
-    };
-    let pos = this.getxy(topLeft.x, topLeft.y);
-    this.ctx.fillRect(
-      pos.x,
-      pos.y,
-      this.ctx.canvas.width,
-      this.ctx.canvas.height
-    );
+    this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     this.pop();
   }
 
@@ -291,6 +271,12 @@ class Pen {
     }
     this.path(newPath);
   }
+
+  image(img, pos, width = 10, height = 10) {
+    let pos_ = this.getxy(pos.x, pos.y);
+    console.log(pos_);
+    this.ctx.drawImage(img, pos_.x, pos_.y, width, height);
+  }
 }
 
 // some utiluty functions
@@ -306,4 +292,8 @@ function radian(deg) {
 
 function random(a = -1, b = 1) {
   return a + Math.random() * (b - a);
+}
+
+function randint(a, b) {
+  return a + Math.floor(Math.random() * (b - a));
 }

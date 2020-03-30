@@ -1,9 +1,12 @@
 class V2d {
+  // by default constract a zero vector
   constructor(x = 0, y = 0) {
     this.x = x;
     this.y = y;
   }
 
+  // some static functions
+  // adds two vectors and returns the sum
   static add(v1, v2) {
     let v = new V2d();
     v.x = v1.x + v2.x;
@@ -12,6 +15,7 @@ class V2d {
     return v;
   }
 
+  // subtracts v2 from v1 and returns the result
   static sub(v1, v2) {
     let v = new V2d();
     v.x = v1.x - v2.x;
@@ -20,6 +24,7 @@ class V2d {
     return v;
   }
 
+  // multiplies a vector "v" with a scalar "a" and returns the result
   static mul(v, a) {
     let temp = new V2d();
     temp.x = v.x * a;
@@ -28,6 +33,29 @@ class V2d {
     return temp;
   }
 
+  // divides a vector "v" by a scalar "a" and returns the result
+  static div(v, a) {
+    let temp = new V2d();
+    temp.x = v.x / a;
+    temp.y = v.y / a;
+
+    return temp;
+  }
+
+  static randomVector() {
+    let theta = random(0, 2 * Math.PI);
+    let x = Math.cos(theta),
+      y = Math.sin(theta);
+
+    return new V2d(x, y);
+  }
+
+  static draw(pen, v1, v2) {
+    console.log(v1, v2);
+    pen.line(v1.x, v1.y, v2.x, v2.y);
+  }
+
+  // some method on instances
   add(v) {
     this.x += v.x;
     this.y += v.y;
@@ -98,4 +126,12 @@ class V2d {
   dir(v) {
     return V2d.sub(v, this).normalize();
   }
+}
+
+function map(x, x1, x2, y1, y2) {
+  let x_ = x2 - x1;
+  let y_ = y2 - y1;
+  let factor = y_ / x_;
+
+  return (x - x1) * factor + y1;
 }
