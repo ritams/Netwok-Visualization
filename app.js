@@ -32,11 +32,11 @@ var pos = {
 };
 var massArray = [];
 for (var i = 0; i < n; i++) {
-  var m = G.degree(i);
+  var m = 1; //G.degree(i);
   var radius = 10;
-  // pos = pick_location(radius);
-  pos.x = x[i];
-  pos.y = y[i];
+  pos = pick_location(radius);
+  // pos.x = x[i];
+  // pos.y = y[i];
   var mass = new Mass(10, pos.x, pos.y, radius);
   massArray.push(mass);
 }
@@ -45,7 +45,7 @@ var springArray = [];
 for (var i = 0; i < edges.length; i++) {
   var j = edges[i][0];
   var k = edges[i][1];
-  var spring = new Spring(1);
+  var spring = new Spring(0.1);
   spring.add_mass(massArray[j], massArray[k]);
   springArray.push(spring);
 }
